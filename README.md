@@ -11,7 +11,7 @@
 ## Install (Claude Code)
 
 ```
-/plugin marketplace add Saud770077/cloud-swat
+/plugin marketplace add cloud-swat/cloud-swat
 /plugin install cloud-swat@cloud-swat
 ```
 

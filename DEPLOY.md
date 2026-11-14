@@ -107,7 +107,7 @@ GOOGLE_CLIENT_SECRET=...
 
 في **Claude Code** اكتب:
 ```
-/plugin marketplace add Saud770077/cloud-swat
+/plugin marketplace add cloud-swat/cloud-swat
 /plugin install cloud-swat@cloud-swat
 ```
 
