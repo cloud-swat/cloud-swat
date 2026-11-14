@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cloud SWAT · watch your AI team work</title>
+<meta name="description" content="Turn Claude Code subagents into a visible team and watch every agent work live.">
+<link rel="icon" href="/favicon.svg">
+<link rel="stylesheet" href="/css/landing.css">
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="brand" href="/"><span class="logo"></span>Cloud SWAT</a>
+    <div class="navlinks"><a href="/demo">Live demo</a><a class="btn s small" href="/app">Sign in</a></div>
+  </nav>
+
+  <section class="hero">
+    <h1>Watch your AI team<br><span>work in real time</span></h1>
+    <p>Cloud SWAT turns Claude Code subagents into a visible team. Each one gets a name, a role and a live card showing what they search, read, fix and find.</p>
+    <div class="cta"><a class="btn p" href="/demo">See the demo</a><a class="btn s" href="#install">Install the plugin</a></div>
+  </section>
+
+  <div class="lineup" id="lineup"></div>
+
+  <h2>How it works</h2>
+  <div class="steps">
+    <div class="step"><i>1</i><h3>Install the plugin</h3><p>Add the crew skill, five specialist agents and the live-reporting hooks to Claude Code.</p></div>
+    <div class="step"><i>2</i><h3>Link your device once</h3><p>Start Claude Code. Your browser opens, you sign in with GitHub or Google and approve. No keys to copy.</p></div>
+    <div class="step"><i>3</i><h3>Watch the mission live</h3><p>Say “use the crew to…”. The live view opens on its own and every agent's work appears as it happens.</p></div>
+  </div>
+
+  <h2 id="install">Install</h2>
+<pre><span># in Claude Code</span>
+/plugin marketplace add Saud770077/cloud-swat
+/plugin install cloud-swat@cloud-swat
+
+<span># restart Claude Code. A link to connect this device opens in your browser.</span>
+<span># then just ask:</span>
+use the crew to audit this repo for security issues</pre>
+
+  <h2>Also inside Claude</h2>
+  <div class="steps two">
+    <div class="step"><h3>Ask about your crew</h3><p>Connect Cloud SWAT as an MCP connector and ask “how many tokens did my crew use this week?”</p></div>
+    <div class="step"><h3>Built to save tokens</h3><p>Live tracking runs in hooks outside the model, so it costs zero tokens. The MCP has 4 small tools with one-line answers.</p></div>
+  </div>
+
+  <footer><a href="/privacy">Privacy</a> · Cloud SWAT is an independent community project and is not affiliated with Anthropic.</footer>
+</div>
+<script src="/js/creatures.js"></script>
+<script src="/js/landing.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cloud SWAT — Live Mission</title>
+<link rel="icon" href="/favicon.svg">
+<link rel="stylesheet" href="/css/dash.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="brand" href="/">
+      <span class="logo"></span>
+      <div><h1>Cloud SWAT</h1><span>Your AI team, working live</span></div>
+    </a>
+    <div class="head-right"><a class="back" href="/app">← Missions</a><div class="pill wait" id="pill"><i></i><span>Connecting…</span></div></div>
+  </header>
+
+  <section class="mission">
+    <div><small>Mission</small><h2 id="mission">Waiting for the Captain…</h2></div>
+    <div class="stats">
+      <div class="stat"><b id="elapsed">00:00</b><span>Elapsed</span></div>
+      <div class="stat"><b id="nAgents">0</b><span>Agents</span></div>
+      <div class="stat"><b id="nFind">0</b><span>Findings</span></div>
+      <div class="stat"><b id="nTok">0</b><span>Tokens</span></div>
+    </div>
+    <div class="progress"><div id="bar"></div></div>
+  </section>
+
+  <div class="main">
+    <div class="grid" id="grid"></div>
+    <aside>
+      <div class="box"><h4>Findings <span id="fCount">0</span></h4><div id="findings"></div></div>
+      <div class="box"><h4>Activity</h4><div class="feed" id="feed"></div></div>
+      <div class="box"><h4>Tokens by agent</h4><div class="tok" id="tok"></div></div>
+    </aside>
+  </div>
+</div>
+<script src="/js/reducer.js"></script>
+<script src="/js/creatures.js"></script>
+<script src="/js/dashboard.js"></script>
+</body>
+</html>

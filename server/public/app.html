@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Missions · Cloud SWAT</title>
+<link rel="icon" href="/favicon.svg">
+<link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+<div class="shell">
+  <header class="top">
+    <a class="brand" href="/"><span class="logo"></span><b>Cloud SWAT</b></a>
+    <nav class="links"><a class="on" href="/app">Missions</a><a href="/app/account">Account</a><img class="avatar-sm" id="me-avatar" alt=""></nav>
+  </header>
+
+  <div class="ok" id="linked" hidden>✓ Device linked. Your next crew mission will open here automatically.</div>
+
+  <div class="statbar">
+    <div><b id="s-missions">–</b><span>Missions · 7d</span></div>
+    <div><b id="s-tokens">–</b><span>Tokens · 7d</span></div>
+    <div><b id="s-findings">–</b><span>Findings · 7d</span></div>
+    <div><b id="s-cost">–</b><span id="s-cost-label">Top agent · 7d</span></div>
+  </div>
+
+  <h2 class="section">Missions</h2>
+  <div class="missions" id="missions"></div>
+</div>
+<script src="/js/creatures.js"></script>
+<script src="/js/common.js"></script>
+<script src="/js/app.js"></script>
+</body>
+</html>
