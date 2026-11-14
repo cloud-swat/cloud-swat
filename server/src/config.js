@@ -18,6 +18,16 @@ if (secret.length < 32) {
   console.warn('[cloud-swat] SESSION_SECRET not set: using a temporary one (logins reset on restart).');
 }
 
+// GitHub OAuth app secrets are 40 hex characters. Anything else (for example a
+// secret pasted from another provider) would only fail at sign-in, so the
+// GitHub button stays hidden until a valid-looking secret is set.
+const ghSecret = (env.GITHUB_CLIENT_SECRET || '').trim();
+const ghOk = !!env.GITHUB_CLIENT_ID && /^[0-9a-f]{40}$/i.test(ghSecret);
+if (env.GITHUB_CLIENT_ID && !ghOk) console.warn('[cloud-swat] GITHUB_CLIENT_SECRET is missing or not a GitHub secret: GitHub sign-in is hidden.');
+
+const contact = (env.CONTACT_EMAIL || '').trim();
+const CONTACT_EMAIL = /^[^\s@<>"']{1,64}@[^\s@<>"']{1,190}\.[a-z]{2,}$/i.test(contact) ? contact : '';
+
 module.exports = {
   APP_NAME: 'Cloud SWAT',
   VERSION: '1.0.0',
@@ -29,11 +39,11 @@ module.exports = {
   TRUST_PROXY: env.TRUST_PROXY === '1',
   SECRET: secret,
   DB_PATH: env.DB_PATH || './data/cloud-swat.db',
+  CONTACT_EMAIL,
   RETENTION_DAYS: Math.max(1, Number(env.RETENTION_DAYS || 30)),
   // Optional: show an estimated cost if you set a blended price per million tokens.
   PRICE_PER_MTOK: env.PRICE_PER_MTOK ? Number(env.PRICE_PER_MTOK) : null,
-  GITHUB: env.GITHUB_CLIENT_ID && env.GITHUB_CLIENT_SECRET
-    ? { id: env.GITHUB_CLIENT_ID, secret: env.GITHUB_CLIENT_SECRET } : null,
+  GITHUB: ghOk ? { id: env.GITHUB_CLIENT_ID, secret: ghSecret } : null,
   GOOGLE: env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET
     ? { id: env.GOOGLE_CLIENT_ID, secret: env.GOOGLE_CLIENT_SECRET } : null,
   // Test-only login. Refused unless the site runs on localhost and not in production.

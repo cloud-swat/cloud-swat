@@ -83,6 +83,7 @@ function privacyPage() {
     <h3>Retention and deletion</h3>
     <p>Missions are deleted automatically after ${cfg.RETENTION_DAYS} days. You can delete a mission, unlink a device, disconnect an app, or delete your whole account from the account page at any time.</p>
     <p class="fine">${cfg.APP_NAME} is an independent community project and is not affiliated with Anthropic.</p>
+    ${cfg.CONTACT_EMAIL ? `<p class="fine tiny" id="contact">Contact: <a href="mailto:${esc(cfg.CONTACT_EMAIL)}">${esc(cfg.CONTACT_EMAIL)}</a></p>` : ''}
   </section>`);
 }
 
