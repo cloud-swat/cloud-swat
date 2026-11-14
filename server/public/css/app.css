@@ -81,3 +81,6 @@ pre.cmd{background:#0a0c10;border:1px solid var(--line);border-radius:12px;paddi
 .spaced{margin-top:22px}
 .row.left{justify-content:flex-start}
 .card2 .muted{font-size:14px}
+
+.fine.tiny{font-size:11px;opacity:.6;margin-top:8px}
+.fine.tiny a{color:inherit}
