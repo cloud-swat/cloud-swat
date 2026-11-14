@@ -1,0 +1,7 @@
+{
+  "name": "cloud-swat",
+  "owner": { "name": "unclesaud" },
+  "plugins": [
+    { "name": "cloud-swat", "source": "./plugin", "description": "Your AI team, working live: specialist subagents + a real-time dashboard." }
+  ]
+}
