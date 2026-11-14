@@ -77,8 +77,9 @@ function startLogin(req, res, provider, next) {
 
 async function fetchJson(url, opts) {
   const r = await fetch(url, { ...opts, signal: AbortSignal.timeout(8000) });
-  if (!r.ok) throw new S.HttpError(502, 'sign-in provider error');
-  return r.json();
+  const body = await r.json().catch(() => ({}));
+  if (!r.ok && !body.error) { console.warn('[auth] provider HTTP', r.status, url.split('?')[0]); throw new S.HttpError(502, 'sign-in provider error'); }
+  return body;
 }
 
 async function finishLogin(req, res, provider, query) {
@@ -95,7 +96,10 @@ async function finishLogin(req, res, provider, query) {
     const tok = await fetchJson('https://github.com/login/oauth/access_token', {
       method: 'POST', headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
       body: JSON.stringify({ client_id: cfg.GITHUB.id, client_secret: cfg.GITHUB.secret, code, redirect_uri, code_verifier: saved.verifier }) });
-    if (!tok.access_token) throw new S.HttpError(401, 'GitHub sign-in failed');
+    if (!tok.access_token) {
+      console.warn('[auth] github token exchange failed:', tok.error || 'unknown', '-', String(tok.error_description || '').slice(0, 120));
+      throw new S.HttpError(401, 'GitHub sign-in failed');
+    }
     const u = await fetchJson('https://api.github.com/user', { headers: { Authorization: `Bearer ${tok.access_token}`, Accept: 'application/vnd.github+json', 'User-Agent': 'cloud-swat' } });
     if (!u.id) throw new S.HttpError(401, 'GitHub sign-in failed');
     userId = upsertUser('github', u.id, u.name || u.login, AVATAR_OK.test(u.avatar_url || '') ? u.avatar_url : null, null);
@@ -103,7 +107,10 @@ async function finishLogin(req, res, provider, query) {
     const tok = await fetchJson('https://oauth2.googleapis.com/token', {
       method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: new URLSearchParams({ client_id: cfg.GOOGLE.id, client_secret: cfg.GOOGLE.secret, code, redirect_uri, grant_type: 'authorization_code', code_verifier: saved.verifier }) });
-    if (!tok.access_token) throw new S.HttpError(401, 'Google sign-in failed');
+    if (!tok.access_token) {
+      console.warn('[auth] google token exchange failed:', tok.error || 'unknown', '-', String(tok.error_description || '').slice(0, 120));
+      throw new S.HttpError(401, 'Google sign-in failed');
+    }
     const u = await fetchJson('https://openidconnect.googleapis.com/v1/userinfo', { headers: { Authorization: `Bearer ${tok.access_token}` } });
     if (!u.sub) throw new S.HttpError(401, 'Google sign-in failed');
     userId = upsertUser('google', u.sub, u.name || (u.email || '').split('@')[0], AVATAR_OK.test(u.picture || '') ? u.picture : null, u.email);
