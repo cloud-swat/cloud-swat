@@ -1,6 +1,6 @@
 {
   "name": "cloud-swat",
-  "owner": { "name": "unclesaud" },
+  "owner": { "name": "Cloud SWAT" },
   "plugins": [
     { "name": "cloud-swat", "source": "./plugin", "description": "Your AI team, working live: specialist subagents + a real-time dashboard." }
   ]
