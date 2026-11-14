@@ -1,0 +1,13 @@
+{
+  "name": "cloud-swat-server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cloud SWAT: live dashboard + MCP server for Claude Code crews. No dependencies.",
+  "main": "src/index.js",
+  "engines": { "node": ">=22.13" },
+  "scripts": {
+    "start": "node --no-warnings src/index.js",
+    "test": "node --no-warnings --test test/security.test.js"
+  },
+  "license": "MIT"
+}
