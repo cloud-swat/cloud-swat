@@ -1,0 +1,7 @@
+{
+  "name": "cloud-swat",
+  "version": "1.0.0",
+  "description": "Turn Claude Code subagents into a visible team: five specialist agents plus hooks that stream their work to a live dashboard.",
+  "author": { "name": "unclesaud" },
+  "keywords": ["subagents", "team", "dashboard", "multi-agent", "security"]
+}
